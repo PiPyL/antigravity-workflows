@@ -18,7 +18,6 @@ Sau khi cài đặt, sử dụng các slash commands trong Antigravity IDE:
 /debug    # Phân tích vấn đề  
 /review   # Review code
 /redmine  # Xử lý task từ Redmine
-/ai-batch # Batch xử lý AI tasks
 ```
 
 ## 📦 Cài Đặt
@@ -40,7 +39,7 @@ npx @pipyl/antigravity-workflows init
 npm install -g @pipyl/antigravity-workflows
 
 # Sử dụng
-@pipyl/antigravity-workflows init
+antigravity-workflows init
 ```
 
 ### Cách 3: Install trong project
@@ -119,7 +118,7 @@ npx @pipyl/antigravity-workflows update
 | Command | Mô tả | Khi nào dùng |
 |---------|-------|--------------|
 | `/redmine` | Xử lý task từ Redmine | Khi có task từ Redmine cần implement |
-| `/ai-batch` | Batch xử lý AI tasks | Khi cần xử lý nhiều AI tasks từ Redmine |
+| `/finish-task` | Hoàn thành task & tạo PR | Khi code xong, cần commit, push, tạo PR |
 
 ## 🎓 Nguyên Tắc Chung
 
@@ -139,7 +138,7 @@ Tất cả workflows tuân thủ:
 4. **Luôn `/test`** trước khi `/git-commit`
 5. **Chạy `/review`** trước khi deploy production
 6. **Dùng `/redmine`** khi có task từ Redmine cần implement tự động
-7. **Dùng `/ai-batch`** để batch xử lý nhiều AI tasks cùng lúc
+7. **Dùng `/finish-task`** để wrap-up task với PR và Redmine update
 
 ## 📁 Cấu Trúc Sau Khi Cài Đặt
 
@@ -147,15 +146,15 @@ Tất cả workflows tuân thủ:
 your-project/
 └── .agent/
     └── workflows/
-        ├── ai-batch.md     # Batch xử lý AI tasks
         ├── ask.md
         ├── cook.md
         ├── debug.md
         ├── docs.md
+        ├── finish-task.md
         ├── fix.md
         ├── git-commit.md
         ├── plan.md
-        ├── redmine.md      # Xử lý task từ Redmine
+        ├── redmine.md
         ├── review.md
         ├── scout.md
         ├── test.md

@@ -1,0 +1,1699 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workflow Guide - Antigravity IDE</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* FlyDino Cyber-Dev Theme */
+            --bg-primary: #050507; /* Deepest Void */
+            --bg-secondary: #0a0b10;
+            --bg-card: rgba(20, 20, 25, 0.6); /* Glass */
+            --bg-card-hover: rgba(30, 30, 40, 0.8);
+
+            --accent-primary: #F8873B; /* FlyDino Orange */
+            --accent-secondary: #7856dd; /* FlyDino Purple */
+            --accent-glow: rgba(248, 135, 59, 0.4);
+            
+            --accent-gradient: linear-gradient(135deg, #F8873B 0%, #ff5e3a 50%, #7856dd 100%);
+            --border-gradient: linear-gradient(135deg, rgba(248, 135, 59, 0.5), rgba(120, 86, 221, 0.5));
+            
+            --text-primary: #ffffff;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            
+            --border-color: rgba(255, 255, 255, 0.08);
+            --shadow-glow: 0 0 20px rgba(248, 135, 59, 0.2);
+            --shadow-neon: 0 0 10px rgba(248, 135, 59, 0.5), 0 0 20px rgba(120, 86, 221, 0.3);
+            
+            --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+            --font-sans: 'Inter', sans-serif;
+            --font-heading: 'Montserrat', sans-serif;
+
+            --radius-sm: 4px;
+            --radius-md: 8px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+        }
+
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6, .logo, .workflow-command, .nav-btn {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* Animated background */
+        /* Tech Grid Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-color: var(--bg-primary);
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+
+        .bg-animation::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 15% 50%, rgba(120, 86, 221, 0.15), transparent 25%),
+                        radial-gradient(circle at 85% 30%, rgba(248, 135, 59, 0.1), transparent 25%);
+            animation: pulseGlow 10s ease-in-out infinite alternate;
+        }
+
+        @keyframes pulseGlow {
+            0% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        /* Glitch Effect for Title */
+        .header h1 {
+            font-family: var(--font-heading);
+            font-weight: 800;
+            font-size: clamp(3rem, 6vw, 4.5rem);
+            letter-spacing: -2px;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(248, 135, 59, 0.3);
+            margin-bottom: 20px;
+        }
+
+        @keyframes bgFloat {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(-20px, 20px) rotate(5deg); }
+            66% { transform: translate(20px, -20px) rotate(-5deg); }
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 80px 20px 60px;
+            position: relative;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 2px;
+            background: var(--accent-gradient);
+            border-radius: 2px;
+        }
+
+        .logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .logo-icon {
+            width: 64px;
+            height: 64px;
+            background: var(--accent-gradient);
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            box-shadow: var(--shadow-glow);
+        }
+
+        .header h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 16px;
+            animation: fadeInUp 0.8s ease-out 0.1s both;
+        }
+
+        .header .subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Navigation */
+        .nav {
+            position: sticky;
+            top: 0;
+            background: rgba(10, 10, 15, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 100;
+            padding: 16px 20px;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .nav-btn {
+            padding: 10px 18px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .nav-btn:hover {
+            background: var(--bg-card-hover);
+            color: var(--text-primary);
+            border-color: var(--accent-primary);
+            transform: translateY(-2px);
+        }
+
+        .nav-btn.active {
+            background: var(--accent-gradient);
+            color: white;
+            border-color: transparent;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        /* Quick Start Section - Terminal Style */
+        .quick-start {
+            background: rgba(10, 10, 12, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            margin-bottom: 60px;
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            overflow: hidden;
+        }
+
+        .quick-start::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--accent-gradient);
+        }
+
+        .code-block {
+            background: #0d0d12; /* Terminal Black */
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: var(--radius-md);
+            padding: 24px;
+            font-family: var(--font-mono);
+            font-size: 0.95rem;
+            position: relative;
+        }
+        
+        /* Mac Terminal Dots */
+        .code-block::before {
+            content: '● ● ●';
+            position: absolute;
+            top: 12px;
+            left: 16px;
+            color: rgba(255,255,255,0.2);
+            font-size: 10px;
+            letter-spacing: 2px;
+        }
+
+        .code-block code {
+            display: block;
+            margin-top: 10px;
+        }
+
+        .quick-start::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--accent-gradient);
+        }
+
+        .quick-start h2 {
+            font-size: 1.75rem;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .quick-start h2 span {
+            font-size: 1.5rem;
+        }
+
+        .code-block {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 24px;
+            font-family: 'JetBrains Mono', 'Fira Code', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+        }
+
+        .code-block code {
+            color: var(--text-secondary);
+        }
+
+        .code-block .comment {
+            color: var(--text-muted);
+        }
+
+        .code-block .command {
+            color: #22d3ee;
+        }
+
+        .code-block .string {
+            color: #4ade80;
+        }
+
+        /* Category Sections */
+        .category {
+            margin-bottom: 60px;
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .category-icon {
+            width: 56px;
+            height: 56px;
+            background: var(--accent-gradient);
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            box-shadow: var(--shadow-glow);
+        }
+
+        .category-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .category-desc {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* Workflow Cards Grid */
+        .workflow-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            gap: 24px;
+        }
+
+        /* Workflow Card - Sci-Fi Glass */
+        .workflow-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: visible;
+        }
+
+        .workflow-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            border-color: var(--accent-primary);
+            box-shadow: var(--shadow-neon);
+            z-index: 10;
+        }
+
+        /* Tech corner accent */
+        .workflow-card::after {
+            content: '';
+            position: absolute;
+            top: -1px;
+            right: -1px;
+            width: 20px;
+            height: 20px;
+            border-top: 2px solid var(--accent-primary);
+            border-right: 2px solid var(--accent-primary);
+            border-radius: 0 var(--radius-lg) 0 0;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .workflow-card:hover::after {
+            opacity: 1;
+        }
+
+        .workflow-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--accent-gradient);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 0;
+        }
+
+        .workflow-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-glow);
+            border-color: var(--accent-primary);
+        }
+
+        .workflow-card:hover::before {
+            opacity: 0.03;
+        }
+
+        .workflow-card > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .workflow-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+
+        .workflow-command {
+            font-family: var(--font-mono);
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--accent-primary);
+            text-shadow: 0 0 10px rgba(248, 135, 59, 0.3);
+            letter-spacing: -0.5px;
+        }
+        
+        .nav-btn {
+            font-family: var(--font-mono);
+            border-radius: var(--radius-sm);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.75rem;
+        }
+
+        .workflow-badge {
+            padding: 6px 12px;
+            background: rgba(99, 102, 241, 0.15);
+            border-radius: var(--radius-sm);
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--accent-primary);
+            text-transform: uppercase;
+        }
+
+        .workflow-badge.auto {
+            background: rgba(34, 197, 94, 0.15);
+            color: #22c55e;
+        }
+
+        .workflow-badge.readonly {
+            background: rgba(251, 191, 36, 0.15);
+            color: #fbbf24;
+        }
+
+        .workflow-title {
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .workflow-desc {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .workflow-steps {
+            background: var(--bg-primary);
+            border-radius: var(--radius-md);
+            padding: 16px;
+            margin-bottom: 20px;
+        }
+
+        .workflow-steps h4 {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+
+        .step-list {
+            list-style: none;
+        }
+
+        .step-list li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            padding: 6px 0;
+        }
+
+        .step-list li::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--accent-primary);
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .workflow-example {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            padding: 12px 16px;
+            font-family: 'JetBrains Mono', 'Fira Code', monospace;
+            font-size: 0.8rem;
+            color: #22d3ee;
+            overflow-x: auto;
+        }
+
+        /* Detailed Section */
+        .detailed-section {
+            margin-top: 80px;
+        }
+
+        .detailed-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .detailed-header h2 {
+            font-size: 2rem;
+            margin-bottom: 12px;
+        }
+
+        .detailed-header p {
+            color: var(--text-secondary);
+        }
+
+        .accordion {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .accordion-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .accordion-item:hover {
+            border-color: var(--accent-primary);
+        }
+
+        .accordion-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 24px 28px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .accordion-header:hover {
+            background: var(--bg-card-hover);
+        }
+
+        .accordion-title {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .accordion-title .cmd {
+            font-family: 'JetBrains Mono', 'Fira Code', monospace;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--accent-primary);
+        }
+
+        .accordion-title .name {
+            font-weight: 600;
+        }
+
+        .accordion-arrow {
+            width: 32px;
+            height: 32px;
+            background: var(--bg-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-arrow svg {
+            width: 16px;
+            height: 16px;
+            fill: var(--text-secondary);
+        }
+
+        .accordion-item.active .accordion-arrow {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .accordion-item.active .accordion-content {
+            max-height: 2000px;
+        }
+
+        .accordion-body {
+            padding: 0 28px 28px;
+        }
+
+        .detail-section {
+            margin-bottom: 24px;
+        }
+
+        .detail-section h4 {
+            font-size: 0.9rem;
+            color: var(--accent-secondary);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .detail-section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .detail-section li {
+            padding: 8px 0;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 0.9rem;
+        }
+
+        .detail-section li::before {
+            content: '→';
+            color: var(--accent-primary);
+            flex-shrink: 0;
+        }
+
+        .principles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+        }
+
+        .principle-card {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 20px;
+            text-align: center;
+        }
+
+        .principle-card h4 {
+            color: var(--accent-primary);
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .principle-card p {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        /* Tips Section */
+        .tips-section {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-xl);
+            padding: 40px;
+            margin-top: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tips-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #22c55e, #4ade80, #86efac);
+        }
+
+        .tips-section h2 {
+            font-size: 1.5rem;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .tip-card {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 20px;
+            display: flex;
+            gap: 16px;
+        }
+
+        .tip-number {
+            width: 36px;
+            height: 36px;
+            background: var(--accent-gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+
+        .tip-content h4 {
+            font-size: 0.95rem;
+            margin-bottom: 6px;
+        }
+
+        .tip-content p {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 60px 20px;
+            border-top: 1px solid var(--border-color);
+            margin-top: 60px;
+        }
+
+        .footer-logo {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .footer h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Scroll to top */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--accent-gradient);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-glow);
+            z-index: 1000;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-4px);
+        }
+
+        .scroll-top svg {
+            width: 24px;
+            height: 24px;
+            fill: white;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header {
+                padding: 60px 20px 40px;
+            }
+
+            .quick-start {
+                padding: 28px;
+            }
+
+            .workflow-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-container {
+                gap: 8px;
+            }
+
+            .nav-btn {
+                padding: 8px 14px;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation"></div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <div class="logo-icon">
+                <img src="https://flydinotech.com/images/favicon.png" alt="FlyDino" style="width: 36px; height: 36px; object-fit: contain;">
+            </div>
+        </div>
+        <h1>Workflow Guide</h1>
+        <p class="subtitle">Bộ 12 workflows mạnh mẽ cho Antigravity IDE, tự động hóa quy trình phát triển phần mềm</p>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="#quick-start" class="nav-btn">🚀 Quick Start</a>
+            <a href="#core" class="nav-btn">🎯 Core Dev</a>
+            <a href="#analysis" class="nav-btn">🔍 Analysis</a>
+            <a href="#utilities" class="nav-btn">📝 Utilities</a>
+            <a href="#redmine" class="nav-btn">🔗 Redmine</a>
+            <a href="#detailed" class="nav-btn">📖 Chi Tiết</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <!-- Quick Start -->
+        <section id="quick-start" class="quick-start">
+            <h2><span>🚀</span> Quick Start</h2>
+            <div class="code-block">
+                <code>
+                    <span class="comment"># Trong Antigravity IDE, sử dụng slash commands:</span><br><br>
+                    <span class="command">/plan</span> <span class="string">"mô tả tính năng cần triển khai"</span><br>
+                    <span class="command">/cook</span> <span class="string">"task cần implement từ A-Z"</span><br>
+                    <span class="command">/fix</span> <span class="string">"mô tả lỗi cần sửa"</span><br>
+                    <span class="command">/debug</span> <span class="string">"vấn đề cần phân tích"</span><br>
+                    <span class="command">/review</span> <span class="comment"># review code gần đây</span><br>
+                    <span class="command">/git-commit</span> <span class="comment"># commit với conventional format</span><br><br>
+                    <span class="comment"># Redmine Integration:</span><br>
+                    <span class="command">/redmine</span> <span class="string">"12345"</span> <span class="comment"># xử lý task từ Redmine</span><br>
+                    <span class="command">/finish-task</span> <span class="string">"12345"</span> <span class="comment"># hoàn thành task & tạo PR</span>
+                </code>
+            </div>
+        </section>
+
+        <!-- Core Development -->
+        <section id="core" class="category">
+            <div class="category-header">
+                <div class="category-icon">🎯</div>
+                <div>
+                    <h2 class="category-title">Core Development</h2>
+                    <p class="category-desc">Các workflow chính cho việc phát triển tính năng</p>
+                </div>
+            </div>
+
+            <div class="workflow-grid">
+                <!-- /plan -->
+                <article class="workflow-card">
+                    <div class="workflow-header">
+                        <span class="workflow-command">/plan</span>
+                        <span class="workflow-badge readonly">Chỉ Plan</span>
+                    </div>
+                    <h3 class="workflow-title">Lập Kế Hoạch Triển Khai</h3>
+                    <p class="workflow-desc">Tạo implementation plan chi tiết trước khi bắt đầu coding. Áp dụng nguyên tắc YAGNI, KISS, DRY.</p>
+                    <div class="workflow-steps">
+                        <h4>Quy trình</h4>
+                        <ul class="step-list">
+                            <li>Phân tích yêu cầu từ user</li>
+                            <li>Nghiên cứu codebase hiện có</li>
+                            <li>Tạo plan trong <code>./plans/</code></li>
+                            <li>Báo cáo kết quả (không implement)</li>
+                        </ul>
+                    </div>
+                    <div class="workflow-example">/plan "tạo authentication với OAuth2"</div>
+                </article>
+
+                <!-- /cook -->
+                <article class="workflow-card">
+                    <div class="workflow-header">
+                        <span class="workflow-command">/cook</span>
+                        <span class="workflow-badge auto">Full Auto</span>
+                    </div>
+                    <h3 class="workflow-title">Triển Khai Đầy Đủ</h3>
+                    <p class="workflow-desc">Full-stack workflow từ planning đến deployment. Thực hiện tất cả các bước từ A đến Z.</p>
+                    <div class="workflow-steps">
+                        <h4>8 Phases</h4>
+                        <ul class="step-list">
+                            <li>Làm rõ yêu cầu</li>
+                            <li>Nghiên cứu → Lập kế hoạch</li>
+                            <li>Triển khai → Testing</li>
+                            <li>Review → Docs → Báo cáo</li>
+                        </ul>
+                    </div>
+                    <div class="workflow-example">/cook "implement REST API user management"</div>
+                </article>
+
+                <!-- /fix -->
+                <article class="workflow-card">
+                    <div class="workflow-header">
+                        <span class="workflow-command">/fix</span>
+                        <span class="workflow-badge auto">Auto Detect</span>
+                    </div>
+                    <h3 class="workflow-title">Sửa Lỗi Nhanh</h3>
+                    <p class="workflow-desc">Phân tích và sửa lỗi với mức độ phức tạp tự động detect. Simple fix hoặc complex fix với mini-plan.</p>
+                    <div class="workflow-steps">
+                        <h4>Auto-detect độ phức tạp</h4>
+                        <ul class="step-list">
+                            <li><strong>Simple:</strong> 1-2 files, fix trực tiếp</li>
+                            <li><strong>Complex:</strong> Nhiều files, có mini-plan</li>
+                            <li>Chạy tests sau khi fix</li>
+                            <li>Minimal changes only</li>
+                        </ul>
+                    </div>
+                    <div class="workflow-example">/fix "lỗi null pointer khi login"</div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Analysis & Quality -->
+        <section id="analysis" class="category">
+            <div class="category-header">
+                <div class="category-icon">🔍</div>
+                <div>
+                    <h2 class="category-title">Analysis & Quality</h2>
+                    <p class="category-desc">Phân tích, kiểm tra và đảm bảo chất lượng code</p>
+                </div>
+            </div>
+
+            <div class="workflow-grid">
+                <!-- /debug -->
+                <article class="workflow-card">
+                    <div class="workflow-header">
+                        <span class="workflow-command">/debug</span>
+                        <span class="workflow-badge readonly">Chỉ Phân Tích</span>
+                    </div>
+                    <h3 class="workflow-title">Debug & Phân Tích</h3>
+                    <p class="workflow-desc">Tìm root cause của issues và đề xuất giải pháp. Sử dụng kỹ thuật 5 Whys để đào sâu vấn đề.</p>
+                    <div class="workflow-steps">
+                        <h4>Root Cause Analysis</h4>
+                        <ul class="step-list">
+                            <li>Thu thập logs, error messages</li>
+                            <li>Trace request/response flow</li>
+                            <li>Áp dụng 5 Whys technique</li>
+                            <li>Đề xuất multiple solutions</li>
+                        </ul>
+                    </div>
+                    <div class="workflow-example">/debug "memory leak sau 1 giờ chạy"</div>
+                </article>
+
+                <!-- /test -->
+                <article class="workflow-card">
+                    <div class="workflow-header">
+                        <span class="workflow-command">/test</span>
+                        <span class="workflow-badge readonly">Chỉ Báo Cáo</span>
+                    </div>
+                    <h3 class="workflow-title">Chạy & Phân Tích Tests</h3>
+                    <p class="workflow-desc">Chạy test suite và phân tích kết quả chi tiết. Báo cáo coverage và đề xuất improvements.</p>
+                    <div class="workflow-steps">
+                        <h4>Test Analysis</h4>
+                        <ul class="step-list">
+                            <li>Xác định test environment</li>
+                            <li>Chạy <code>npm test</code></li>
+                            <li>Phân tích failures chi tiết</li>
+                            <li>Coverage analysis</li>
+                        </ul>
+                    </div>
+                    <div class="workflow-example">/test "chỉ chạy unit tests"</div>
+                </article>
+
+                <!-- /review -->
+                <article class="workflow-card">
+                    <div class="workflow-header">
+                        <span class="workflow-command">/review</span>
+                        <span class="workflow-badge">Full Review</span>
+                    </div>
+                    <h3 class="workflow-title">Review Code</h3>
+                    <p class="workflow-desc">Đánh giá toàn diện code quality, security, và performance cho changes gần đây.</p>
+                    <div class="workflow-steps">
+                        <h4>Review Areas</h4>
+                        <ul class="step-list">
+                            <li>Code Quality & Readability</li>
+                            <li>Type Safety & Error Handling</li>
+                            <li>Security (OWASP Top 10)</li>
+                            <li>Performance Issues</li>
+                        </ul>
+                    </div>
+                    <div class="workflow-example">/review "review thay đổi gần đây"</div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Utilities -->
+        <section id="utilities" class="category">
+            <div class="category-header">
+                <div class="category-icon">📝</div>
+                <div>
+                    <h2 class="category-title">Utilities</h2>
+                    <p class="category-desc">Các công cụ hỗ trợ trong quá trình phát triển</p>
+                </div>
+            </div>
+
+            <div class="workflow-grid">
+                <!-- /docs -->
+                <article class="workflow-card">
+                    <div class="workflow-header">
+                        <span class="workflow-command">/docs</span>
+                        <span class="workflow-badge">Update</span>
+                    </div>
+                    <h3 class="workflow-title">Cập Nhật Documentation</h3>
+                    <p class="workflow-desc">Đồng bộ documentation với code changes gần đây. Cập nhật README, API docs, comments.</p>
+                    <div class="workflow-steps">
+                        <h4>Docs Update</h4>
+                        <ul class="step-list">
+                            <li>Phân tích recent changes</li>
+                            <li>Cập nhật README.md</li>
+                            <li>API documentation</li>
+                            <li>Code comments & summary</li>
+                        </ul>
+                    </div>
+                    <div class="workflow-example">/docs "cập nhật API documentation"</div>
+                </article>
+
+                <!-- /scout -->
+                <article class="workflow-card">
+                    <div class="workflow-header">
+                        <span class="workflow-command">/scout</span>
+                        <span class="workflow-badge">Search</span>
+                    </div>
+                    <h3 class="workflow-title">Khám Phá Codebase</h3>
+                    <p class="workflow-desc">Tìm kiếm nhanh files và code liên quan trong codebase. Nhanh và focused.</p>
+                    <div class="workflow-steps">
+                        <h4>Scout Features</h4>
+                        <ul class="step-list">
+                            <li>Tìm files theo pattern</li>
+                            <li>Search code content</li>
+                            <li>Directory structure</li>
+                            <li>Relevant files report</li>
+                        </ul>
+                    </div>
+                    <div class="workflow-example">/scout "files liên quan đến payment"</div>
+                </article>
+
+                <!-- /ask -->
+                <article class="workflow-card">
+                    <div class="workflow-header">
+                        <span class="workflow-command">/ask</span>
+                        <span class="workflow-badge readonly">Tư Vấn</span>
+                    </div>
+                    <h3 class="workflow-title">Tư Vấn Kỹ Thuật</h3>
+                    <p class="workflow-desc">Trả lời câu hỏi về architecture, design decisions, best practices. Không implement.</p>
+                    <div class="workflow-steps">
+                        <h4>Consultation</h4>
+                        <ul class="step-list">
+                            <li>Phân tích từ nhiều góc độ</li>
+                            <li>Multiple options với pros/cons</li>
+                            <li>Trade-offs analysis</li>
+                            <li>High-level implementation hints</li>
+                        </ul>
+                    </div>
+                    <div class="workflow-example">/ask "nên dùng REST hay GraphQL?"</div>
+                </article>
+
+                <!-- /git-commit -->
+                <article class="workflow-card">
+                    <div class="workflow-header">
+                        <span class="workflow-command">/git-commit</span>
+                        <span class="workflow-badge auto">Auto</span>
+                    </div>
+                    <h3 class="workflow-title">Git Commit & Push</h3>
+                    <p class="workflow-desc">Tạo clean commits theo conventional commit format và push code lên repository.</p>
+                    <div class="workflow-steps">
+                        <h4>Commit Process</h4>
+                        <ul class="step-list">
+                            <li>Kiểm tra git status</li>
+                            <li>Chạy lint & tests</li>
+                            <li>Tạo conventional commit</li>
+                            <li>Push (với xác nhận)</li>
+                        </ul>
+                    </div>
+                    <div class="workflow-example">/git-commit "push luôn sau khi commit"</div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Redmine Integration -->
+        <section id="redmine" class="category">
+            <div class="category-header">
+                <div class="category-icon">🔗</div>
+                <div>
+                    <h2 class="category-title">Redmine Integration</h2>
+                    <p class="category-desc">Tích hợp tự động với Redmine để xử lý tasks</p>
+                </div>
+            </div>
+
+            <div class="workflow-grid">
+                <!-- /redmine -->
+                <article class="workflow-card">
+                    <div class="workflow-header">
+                        <span class="workflow-command">/redmine</span>
+                        <span class="workflow-badge auto">Full Auto</span>
+                    </div>
+                    <h3 class="workflow-title">Xử Lý Task Từ Redmine</h3>
+                    <p class="workflow-desc">Full workflow từ fetch issue → planning → implement → test → push → create PR. Hoàn toàn tự động sau khi nhập Issue ID.</p>
+                    <div class="workflow-steps">
+                        <h4>7 Phases</h4>
+                        <ul class="step-list">
+                            <li>Auth → Fetch Issue từ Redmine API</li>
+                            <li>Scout codebase + Lập kế hoạch</li>
+                            <li>Implement code + Run tests</li>
+                            <li>Git push + Create PR + Update Redmine</li>
+                        </ul>
+                    </div>
+                    <div class="workflow-example">/redmine "12345"</div>
+                </article>
+
+                <!-- /finish-task -->
+                <article class="workflow-card">
+                    <div class="workflow-header">
+                        <span class="workflow-command">/finish-task</span>
+                        <span class="workflow-badge auto">Auto</span>
+                    </div>
+                    <h3 class="workflow-title">Hoàn Thành Task & Tạo PR</h3>
+                    <p class="workflow-desc">Workflow wrap-up sau khi code xong: commit, push, tạo PR, gắn link Redmine và cập nhật status.</p>
+                    <div class="workflow-steps">
+                        <h4>6 Phases</h4>
+                        <ul class="step-list">
+                            <li>Thu thập thông tin + Fetch issue</li>
+                            <li>Pre-flight check (git status, lint)</li>
+                            <li>Git operations (branch, commit, push)</li>
+                            <li>Tạo PR + Update Redmine status</li>
+                        </ul>
+                    </div>
+                    <div class="workflow-example">/finish-task "12345"</div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Detailed Section -->
+        <section id="detailed" class="detailed-section">
+            <div class="detailed-header">
+                <h2>📖 Chi Tiết Từng Workflow</h2>
+                <p>Click vào từng mục để xem hướng dẫn chi tiết</p>
+            </div>
+
+            <div class="accordion">
+                <!-- /plan detail -->
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <div class="accordion-title">
+                            <span class="cmd">/plan</span>
+                            <span class="name">Lập Kế Hoạch Triển Khai</span>
+                        </div>
+                        <div class="accordion-arrow">
+                            <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                        </div>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <div class="detail-section">
+                                <h4>📋 Mục đích</h4>
+                                <p style="color: var(--text-secondary);">Tạo implementation plan chi tiết trước khi bắt đầu coding. Áp dụng nguyên tắc YAGNI, KISS, DRY.</p>
+                            </div>
+                            <div class="detail-section">
+                                <h4>⚡ Workflow Steps</h4>
+                                <ul>
+                                    <li><strong>Phân tích yêu cầu:</strong> Đọc và hiểu yêu cầu, hỏi clarification nếu cần</li>
+                                    <li><strong>Nghiên cứu codebase:</strong> Sử dụng grep_search, find_by_name để tìm files</li>
+                                    <li><strong>Tạo implementation plan:</strong> File plan.md với structure chuẩn</li>
+                                    <li><strong>Báo cáo:</strong> Tổng hợp plan, không tự động implement</li>
+                                </ul>
+                            </div>
+                            <div class="detail-section">
+                                <h4>📁 Output Location</h4>
+                                <div class="workflow-example" style="margin-top: 12px;">./plans/YYMMDD-HHmm-plan-name/plan.md</div>
+                            </div>
+                            <div class="detail-section">
+                                <h4>📝 Plan Structure</h4>
+                                <ul>
+                                    <li>Overview - Tổng quan về plan</li>
+                                    <li>Requirements - Yêu cầu chi tiết</li>
+                                    <li>Architecture - Kiến trúc giải pháp</li>
+                                    <li>Implementation Steps - Các bước triển khai</li>
+                                    <li>TODO List - Danh sách công việc với checkboxes</li>
+                                    <li>Risk Assessment - Đánh giá rủi ro</li>
+                                    <li>Success Criteria - Tiêu chí thành công</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- /cook detail -->
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <div class="accordion-title">
+                            <span class="cmd">/cook</span>
+                            <span class="name">Triển Khai Tính Năng Đầy Đủ</span>
+                        </div>
+                        <div class="accordion-arrow">
+                            <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                        </div>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <div class="detail-section">
+                                <h4>📋 Mục đích</h4>
+                                <p style="color: var(--text-secondary);">Full-stack workflow từ planning đến deployment. Đây là workflow toàn diện nhất.</p>
+                            </div>
+                            <div class="detail-section">
+                                <h4>⚡ 8 Phases</h4>
+                                <ul>
+                                    <li><strong>Phase 1 - Làm rõ yêu cầu:</strong> Phân tích task, xác định acceptance criteria</li>
+                                    <li><strong>Phase 2 - Nghiên cứu:</strong> Scout codebase, patterns, integration points</li>
+                                    <li><strong>Phase 3 - Lập kế hoạch:</strong> Tạo plan trong ./plans/</li>
+                                    <li><strong>Phase 4 - Triển khai:</strong> Implement theo plan, chạy lint</li>
+                                    <li><strong>Phase 5 - Testing:</strong> Viết tests, chạy test suite</li>
+                                    <li><strong>Phase 6 - Review:</strong> Self-review quality, security, performance</li>
+                                    <li><strong>Phase 7 - Documentation:</strong> Cập nhật README, API docs</li>
+                                    <li><strong>Phase 8 - Báo cáo:</strong> Tổng hợp, hỏi commit</li>
+                                </ul>
+                            </div>
+                            <div class="detail-section">
+                                <h4>⚠️ Nguyên tắc quan trọng</h4>
+                                <ul>
+                                    <li>Không tạo file mới nếu có thể update file hiện có</li>
+                                    <li>Giữ files dưới 200 dòng</li>
+                                    <li>Không commit credentials hoặc secrets</li>
+                                    <li>Dùng conventional commits</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- /fix detail -->
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <div class="accordion-title">
+                            <span class="cmd">/fix</span>
+                            <span class="name">Sửa Lỗi Nhanh</span>
+                        </div>
+                        <div class="accordion-arrow">
+                            <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                        </div>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <div class="detail-section">
+                                <h4>📋 Mục đích</h4>
+                                <p style="color: var(--text-secondary);">Phân tích và sửa lỗi với mức độ phức tạp tự động detect.</p>
+                            </div>
+                            <div class="detail-section">
+                                <h4>🔄 Auto-detect Complexity</h4>
+                                <ul>
+                                    <li><strong>Simple Fix (1-2 files):</strong> Fix trực tiếp → Chạy tests → Báo cáo</li>
+                                    <li><strong>Complex Fix (nhiều files):</strong> Tạo mini-plan → Fix step-by-step → Tests từng bước → Review</li>
+                                </ul>
+                            </div>
+                            <div class="detail-section">
+                                <h4>⚠️ Nguyên tắc</h4>
+                                <ul>
+                                    <li>Minimal changes - chỉ fix đúng vấn đề</li>
+                                    <li>Không refactor không liên quan</li>
+                                    <li>Test kỹ trước khi báo cáo xong</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- /debug detail -->
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <div class="accordion-title">
+                            <span class="cmd">/debug</span>
+                            <span class="name">Debug và Phân Tích</span>
+                        </div>
+                        <div class="accordion-arrow">
+                            <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                        </div>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <div class="detail-section">
+                                <h4>📋 Mục đích</h4>
+                                <p style="color: var(--text-secondary);">Tìm root cause của issues và đề xuất giải pháp. KHÔNG tự động implement.</p>
+                            </div>
+                            <div class="detail-section">
+                                <h4>⚡ Workflow</h4>
+                                <ul>
+                                    <li><strong>Thu thập thông tin:</strong> Error messages, stack traces, logs, steps to reproduce</li>
+                                    <li><strong>Phân tích logs:</strong> Tìm patterns, xác định thời điểm</li>
+                                    <li><strong>Điều tra codebase:</strong> Tìm files liên quan, đọc code, check git log</li>
+                                    <li><strong>Root Cause Analysis:</strong> Áp dụng 5 Whys technique</li>
+                                </ul>
+                            </div>
+                            <div class="detail-section">
+                                <h4>📊 Report Structure</h4>
+                                <ul>
+                                    <li>Problem Summary - Tóm tắt vấn đề</li>
+                                    <li>Root Cause - Nguyên nhân gốc</li>
+                                    <li>Evidence - Logs, code snippets làm bằng chứng</li>
+                                    <li>Proposed Solutions - Nhiều options với pros/cons</li>
+                                    <li>Recommended Action - Đề xuất giải pháp tốt nhất</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- /review detail -->
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <div class="accordion-title">
+                            <span class="cmd">/review</span>
+                            <span class="name">Review Code</span>
+                        </div>
+                        <div class="accordion-arrow">
+                            <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                        </div>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <div class="detail-section">
+                                <h4>📋 Mục đích</h4>
+                                <p style="color: var(--text-secondary);">Đánh giá code quality, security, và performance cho changes gần đây.</p>
+                            </div>
+                            <div class="detail-section">
+                                <h4>🔍 Review Areas</h4>
+                                <ul>
+                                    <li><strong>Code Quality:</strong> Readability, Maintainability, DRY, KISS, Naming</li>
+                                    <li><strong>Type Safety:</strong> TypeScript types, any types, error handling</li>
+                                    <li><strong>Security (OWASP Top 10):</strong> Input validation, SQL injection, XSS, Auth</li>
+                                    <li><strong>Performance:</strong> N+1 queries, memory leaks, algorithms, re-renders</li>
+                                </ul>
+                            </div>
+                            <div class="detail-section">
+                                <h4>📊 Report Levels</h4>
+                                <ul>
+                                    <li><span style="color: #ef4444;">🔴 Critical:</span> Security vulnerabilities, breaking issues</li>
+                                    <li><span style="color: #f97316;">🟠 High Priority:</span> Performance, type safety issues</li>
+                                    <li><span style="color: #eab308;">🟡 Medium:</span> Code quality, maintainability</li>
+                                    <li><span style="color: #22c55e;">🟢 Low:</span> Style, minor optimizations</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- /git-commit detail -->
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <div class="accordion-title">
+                            <span class="cmd">/git-commit</span>
+                            <span class="name">Git Commit & Push</span>
+                        </div>
+                        <div class="accordion-arrow">
+                            <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                        </div>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <div class="detail-section">
+                                <h4>📋 Mục đích</h4>
+                                <p style="color: var(--text-secondary);">Tạo clean commits theo conventional commit format và push code.</p>
+                            </div>
+                            <div class="detail-section">
+                                <h4>📝 Conventional Commit Format</h4>
+                                <div class="workflow-example" style="margin-top: 12px; margin-bottom: 16px;">
+                                    &lt;type&gt;(&lt;scope&gt;): &lt;subject&gt;<br><br>
+                                    &lt;body&gt;<br><br>
+                                    &lt;footer&gt;
+                                </div>
+                            </div>
+                            <div class="detail-section">
+                                <h4>🏷️ Commit Types</h4>
+                                <ul>
+                                    <li><strong>feat:</strong> New feature</li>
+                                    <li><strong>fix:</strong> Bug fix</li>
+                                    <li><strong>docs:</strong> Documentation</li>
+                                    <li><strong>style:</strong> Formatting (no code change)</li>
+                                    <li><strong>refactor:</strong> Code restructuring</li>
+                                    <li><strong>test:</strong> Adding tests</li>
+                                    <li><strong>chore:</strong> Maintenance</li>
+                                </ul>
+                            </div>
+                            <div class="detail-section">
+                                <h4>⚠️ Không commit</h4>
+                                <ul>
+                                    <li>.env files</li>
+                                    <li>Credentials/secrets</li>
+                                    <li>Build artifacts</li>
+                                    <li>node_modules</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- /redmine detail -->
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <div class="accordion-title">
+                            <span class="cmd">/redmine</span>
+                            <span class="name">Xử Lý Task Từ Redmine</span>
+                        </div>
+                        <div class="accordion-arrow">
+                            <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                        </div>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <div class="detail-section">
+                                <h4>📋 Mục đích</h4>
+                                <p style="color: var(--text-secondary);">Full workflow xử lý task từ Redmine: fetch issue → planning → implementation → testing → push → create PR. Hoàn toàn tự động sau khi nhập Issue ID.</p>
+                            </div>
+                            <div class="detail-section">
+                                <h4>⚡ 7 Phases</h4>
+                                <ul>
+                                    <li><strong>Phase 1 - Authentication:</strong> Đọc/lưu API key từ ~/.gemini/redmine-config.json</li>
+                                    <li><strong>Phase 2 - Fetch Issue:</strong> Gọi Redmine API lấy thông tin task</li>
+                                    <li><strong>Phase 3 - Planning:</strong> Scout codebase + lập kế hoạch (tích hợp /scout + /plan)</li>
+                                    <li><strong>Phase 4 - Execution:</strong> Implement code theo plan (tích hợp /fix hoặc /cook)</li>
+                                    <li><strong>Phase 5 - Verification:</strong> Chạy tests + self-review (tích hợp /test + /review)</li>
+                                    <li><strong>Phase 6 - Git & Push:</strong> Tạo branch, commit, push (tích hợp /git-commit)</li>
+                                    <li><strong>Phase 7 - Redmine Update:</strong> Tạo PR + Update Redmine status</li>
+                                </ul>
+                            </div>
+                            <div class="detail-section">
+                                <h4>⚠️ Nguyên tắc</h4>
+                                <ul>
+                                    <li><strong>ZERO Manual Intervention:</strong> Workflow tự động chạy từ A-Z</li>
+                                    <li><strong>Fail Fast:</strong> Tự động thử fix nếu test fail (tối đa 3 lần)</li>
+                                    <li><strong>Clean Code:</strong> Luôn self-review trước khi commit</li>
+                                </ul>
+                            </div>
+                        </div>
+                </div>
+
+                <!-- /finish-task detail -->
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <div class="accordion-title">
+                            <span class="cmd">/finish-task</span>
+                            <span class="name">Hoàn Thành Task & Tạo PR</span>
+                        </div>
+                        <div class="accordion-arrow">
+                            <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                        </div>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <div class="detail-section">
+                                <h4>📋 Mục đích</h4>
+                                <p style="color: var(--text-secondary);">Workflow wrap-up sau khi code xong: commit code, push branch, tạo PR với link Redmine, cập nhật note và status trên Redmine. Dùng khi bạn đã hoàn thành việc coding.</p>
+                            </div>
+                            <div class="detail-section">
+                                <h4>⚡ 6 Phases</h4>
+                                <ul>
+                                    <li><strong>Phase 1 - Thu thập thông tin:</strong> Đọc config, fetch issue từ Redmine</li>
+                                    <li><strong>Phase 2 - Pre-flight check:</strong> Kiểm tra git status, chạy lint</li>
+                                    <li><strong>Phase 3 - Git Operations:</strong> Tạo branch, commit, push</li>
+                                    <li><strong>Phase 4 - Tạo Pull Request:</strong> Tạo PR với link Redmine trong body</li>
+                                    <li><strong>Phase 5 - Update Redmine:</strong> Gửi PR link + update status</li>
+                                    <li><strong>Phase 6 - Final Summary:</strong> Hiển thị tổng kết</li>
+                                </ul>
+                            </div>
+                            <div class="detail-section">
+                                <h4>🔗 Bi-directional Linking</h4>
+                                <ul>
+                                    <li><strong>PR → Redmine:</strong> Link Redmine issue được gắn trong PR body</li>
+                                    <li><strong>Redmine → PR:</strong> PR link được gửi trong note của issue</li>
+                                </ul>
+                            </div>
+                            <div class="detail-section">
+                                <h4>⚠️ Nguyên tắc</h4>
+                                <ul>
+                                    <li><strong>One-click Completion:</strong> Chỉ cần nhập Issue ID</li>
+                                    <li><strong>Auto Branch Naming:</strong> Tự động detect feat/fix từ Subject</li>
+                                    <li><strong>Safe Operations:</strong> Kiểm tra changes trước khi commit</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tips Section -->
+        <section id="tips" class="tips-section">
+            <h2><span>💡</span> Tips & Best Practices</h2>
+            <div class="tips-grid">
+                <div class="tip-card">
+                    <div class="tip-number">1</div>
+                    <div class="tip-content">
+                        <h4>Bắt đầu với /plan</h4>
+                        <p>Cho tính năng phức tạp, luôn lập kế hoạch trước khi code</p>
+                    </div>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-number">2</div>
+                    <div class="tip-content">
+                        <h4>Dùng /cook cho automation</h4>
+                        <p>Khi muốn full automation từ A đến Z</p>
+                    </div>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-number">3</div>
+                    <div class="tip-content">
+                        <h4>Hỏi /ask trước quyết định</h4>
+                        <p>Trước khi quyết định architecture quan trọng</p>
+                    </div>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-number">4</div>
+                    <div class="tip-content">
+                        <h4>Luôn /test trước commit</h4>
+                        <p>Đảm bảo code hoạt động đúng trước khi commit</p>
+                    </div>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-number">5</div>
+                    <div class="tip-content">
+                        <h4>/review trước deploy</h4>
+                        <p>Kiểm tra quality, security trước production</p>
+                    </div>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-number">6</div>
+                    <div class="tip-content">
+                        <h4>/scout để khám phá</h4>
+                        <p>Nhanh chóng tìm files liên quan trong codebase</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Principles -->
+            <div style="margin-top: 40px;">
+                <h3 style="margin-bottom: 20px; text-align: center;">🎓 Nguyên Tắc Chung</h3>
+                <div class="principles-grid">
+                    <div class="principle-card">
+                        <h4>YAGNI</h4>
+                        <p>You Aren't Gonna Need It - Không over-engineer</p>
+                    </div>
+                    <div class="principle-card">
+                        <h4>KISS</h4>
+                        <p>Keep It Simple, Stupid - Ưu tiên đơn giản</p>
+                    </div>
+                    <div class="principle-card">
+                        <h4>DRY</h4>
+                        <p>Don't Repeat Yourself - Không duplicate code</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-logo">🚀</div>
+        <h3>Happy Coding!</h3>
+        <p>Antigravity IDE Workflows - Phát triển nhanh hơn, thông minh hơn</p>
+    </footer>
+
+    <!-- Scroll to top button -->
+    <button class="scroll-top" id="scrollTop">
+        <svg viewBox="0 0 24 24"><path d="M7 14l5-5 5 5z"/></svg>
+    </button>
+
+    <script>
+        // Accordion functionality
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const item = header.parentElement;
+                const isActive = item.classList.contains('active');
+                
+                // Close all items
+                document.querySelectorAll('.accordion-item').forEach(i => {
+                    i.classList.remove('active');
+                });
+                
+                // Open clicked item if it wasn't active
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('.nav-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = document.querySelector(btn.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Scroll to top button
+        const scrollTopBtn = document.getElementById('scrollTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        });
+
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Active nav state
+        const sections = document.querySelectorAll('section[id]');
+        const navBtns = document.querySelectorAll('.nav-btn');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 150;
+                if (pageYOffset >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navBtns.forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('href') === `#${current}`) {
+                    btn.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

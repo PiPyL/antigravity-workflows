@@ -6,7 +6,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/aidevflydino/antigravity-workflows"
+    "url": "git+https://github.com/PiPyL/antigravity-workflows.git"
+  },
+  "homepage": "https://github.com/PiPyL/antigravity-workflows#readme",
+  "bugs": {
+    "url": "https://github.com/PiPyL/antigravity-workflows/issues"
   },
   "keywords": [
     "antigravity",

@@ -856,11 +856,47 @@
                 padding: 8px 14px;
                 font-size: 0.8rem;
             }
+        /* Language Switcher */
+        .lang-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 200;
+            display: flex;
+            gap: 4px;
+            padding: 4px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 100px;
+            backdrop-filter: blur(10px);
+        }
+        .lang-btn {
+            padding: 8px 14px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            background: transparent;
+            border: none;
+            border-radius: 100px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .lang-btn:hover { color: var(--text-primary); }
+        .lang-btn.active {
+            background: var(--accent-gradient);
+            color: white;
+        }
         }
     </style>
 </head>
 <body>
     <div class="bg-animation"></div>
+
+    <!-- Language Switcher -->
+    <div class="lang-switcher">
+        <button class="lang-btn active" data-lang="vi" onclick="applyTranslations('vi')">VI</button>
+        <button class="lang-btn" data-lang="en" onclick="applyTranslations('en')">EN</button>
+    </div>
 
     <!-- Header -->
     <header class="header">
@@ -869,8 +905,8 @@
                 <img src="https://flydinotech.com/images/favicon.png" alt="FlyDino" style="width: 36px; height: 36px; object-fit: contain;">
             </div>
         </div>
-        <h1>Workflow Guide</h1>
-        <p class="subtitle">Bộ 12 workflows mạnh mẽ cho Antigravity IDE, tự động hóa quy trình phát triển phần mềm</p>
+        <h1 data-i18n="title">Workflow Guide</h1>
+        <p class="subtitle" data-i18n="subtitle">Bộ 12 workflows mạnh mẽ cho Antigravity IDE, tự động hóa quy trình phát triển phần mềm</p>
     </header>
 
     <!-- Navigation -->
@@ -1620,8 +1656,8 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-logo">🚀</div>
-        <h3>Happy Coding!</h3>
-        <p>Antigravity IDE Workflows - Phát triển nhanh hơn, thông minh hơn</p>
+        <h3 data-i18n="footerTitle">Happy Coding!</h3>
+        <p data-i18n="footerDesc">Antigravity IDE Workflows - Phát triển nhanh hơn, thông minh hơn</p>
     </footer>
 
     <!-- Scroll to top button -->
@@ -1630,21 +1666,49 @@
     </button>
 
     <script>
+        // ===== I18N TRANSLATIONS (EMBEDDED) =====
+        const i18n = {
+            vi: {
+                title: "Workflow Guide",
+                subtitle: "Bộ 12 workflows mạnh mẽ cho Antigravity IDE, tự động hóa quy trình phát triển phần mềm",
+                footerTitle: "Happy Coding!",
+                footerDesc: "Antigravity IDE Workflows - Phát triển nhanh hơn, thông minh hơn"
+            },
+            en: {
+                title: "Workflow Guide",
+                subtitle: "12 powerful workflows for Antigravity IDE, automating your software development process",
+                footerTitle: "Happy Coding!",
+                footerDesc: "Antigravity IDE Workflows - Develop faster, smarter"
+            }
+        };
+        
+        let currentLang = localStorage.getItem('ag-lang') || 'vi';
+        
+        function applyTranslations(lang) {
+            const t = i18n[lang];
+            if (!t) return;
+            currentLang = lang;
+            localStorage.setItem('ag-lang', lang);
+            document.documentElement.lang = lang;
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (t[key]) el.textContent = t[key];
+            });
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.lang === lang);
+            });
+        }
+        
+        document.addEventListener('DOMContentLoaded', () => applyTranslations(currentLang));
+
+        // ===== UI INTERACTIONS =====
         // Accordion functionality
         document.querySelectorAll('.accordion-header').forEach(header => {
             header.addEventListener('click', () => {
                 const item = header.parentElement;
                 const isActive = item.classList.contains('active');
-                
-                // Close all items
-                document.querySelectorAll('.accordion-item').forEach(i => {
-                    i.classList.remove('active');
-                });
-                
-                // Open clicked item if it wasn't active
-                if (!isActive) {
-                    item.classList.add('active');
-                }
+                document.querySelectorAll('.accordion-item').forEach(i => i.classList.remove('active'));
+                if (!isActive) item.classList.add('active');
             });
         });
 
@@ -1653,45 +1717,28 @@
             btn.addEventListener('click', (e) => {
                 e.preventDefault();
                 const target = document.querySelector(btn.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
         });
 
         // Scroll to top button
         const scrollTopBtn = document.getElementById('scrollTop');
-        
         window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                scrollTopBtn.classList.add('visible');
-            } else {
-                scrollTopBtn.classList.remove('visible');
-            }
+            scrollTopBtn.classList.toggle('visible', window.pageYOffset > 300);
         });
-
-        scrollTopBtn.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
+        scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
         // Active nav state
         const sections = document.querySelectorAll('section[id]');
         const navBtns = document.querySelectorAll('.nav-btn');
-
         window.addEventListener('scroll', () => {
             let current = '';
             sections.forEach(section => {
-                const sectionTop = section.offsetTop - 150;
-                if (pageYOffset >= sectionTop) {
-                    current = section.getAttribute('id');
-                }
+                if (pageYOffset >= section.offsetTop - 150) current = section.getAttribute('id');
             });
-
             navBtns.forEach(btn => {
                 btn.classList.remove('active');
-                if (btn.getAttribute('href') === `#${current}`) {
-                    btn.classList.add('active');
-                }
+                if (btn.getAttribute('href') === `#${current}`) btn.classList.add('active');
             });
         });
     </script>

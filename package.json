@@ -1,0 +1,32 @@
+{
+  "name": "@pipyl/antigravity-workflows",
+  "version": "1.0.5",
+  "description": "Bộ 10+ workflows tự động hóa cho Antigravity IDE - Tăng tốc quy trình phát triển phần mềm",
+  "author": "AIDevFlyDino",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aidevflydino/antigravity-workflows"
+  },
+  "keywords": [
+    "antigravity",
+    "workflows",
+    "ide",
+    "automation",
+    "ai-coding",
+    "developer-tools",
+    "productivity"
+  ],
+  "bin": {
+    "antigravity-workflows": "./bin/cli.js"
+  },
+  "files": [
+    "bin/",
+    "workflows/",
+    "README.md",
+    "workflow-guide.html"
+  ],
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

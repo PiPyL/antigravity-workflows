@@ -990,7 +990,7 @@
                             <li>Báo cáo kết quả (không implement)</li>
                         </ul>
                     </div>
-                    <div class="workflow-example">/plan "tạo authentication với OAuth2"</div>
+                    <div class="workflow-example" data-i18n="wfPlanExample">/plan "tạo authentication với OAuth2"</div>
                 </article>
 
                 <!-- /cook -->
@@ -1010,7 +1010,7 @@
                             <li>Review → Docs → Báo cáo</li>
                         </ul>
                     </div>
-                    <div class="workflow-example">/cook "implement REST API user management"</div>
+                    <div class="workflow-example" data-i18n="wfCookExample">/cook "implement REST API user management"</div>
                 </article>
 
                 <!-- /fix -->
@@ -1030,7 +1030,7 @@
                             <li>Minimal changes only</li>
                         </ul>
                     </div>
-                    <div class="workflow-example">/fix "lỗi null pointer khi login"</div>
+                    <div class="workflow-example" data-i18n="wfFixExample">/fix "lỗi null pointer khi login"</div>
                 </article>
             </div>
         </section>
@@ -1063,7 +1063,7 @@
                             <li>Đề xuất multiple solutions</li>
                         </ul>
                     </div>
-                    <div class="workflow-example">/debug "memory leak sau 1 giờ chạy"</div>
+                    <div class="workflow-example" data-i18n="wfDebugExample">/debug "memory leak sau 1 giờ chạy"</div>
                 </article>
 
                 <!-- /test -->
@@ -1083,7 +1083,7 @@
                             <li>Coverage analysis</li>
                         </ul>
                     </div>
-                    <div class="workflow-example">/test "chỉ chạy unit tests"</div>
+                    <div class="workflow-example" data-i18n="wfTestExample">/test "chỉ chạy unit tests"</div>
                 </article>
 
                 <!-- /review -->
@@ -1103,7 +1103,7 @@
                             <li>Performance Issues</li>
                         </ul>
                     </div>
-                    <div class="workflow-example">/review "review thay đổi gần đây"</div>
+                    <div class="workflow-example" data-i18n="wfReviewExample">/review "review thay đổi gần đây"</div>
                 </article>
             </div>
         </section>
@@ -1136,7 +1136,7 @@
                             <li>Code comments & summary</li>
                         </ul>
                     </div>
-                    <div class="workflow-example">/docs "cập nhật API documentation"</div>
+                    <div class="workflow-example" data-i18n="wfDocsExample">/docs "cập nhật API documentation"</div>
                 </article>
 
                 <!-- /scout -->
@@ -1156,7 +1156,7 @@
                             <li>Relevant files report</li>
                         </ul>
                     </div>
-                    <div class="workflow-example">/scout "files liên quan đến payment"</div>
+                    <div class="workflow-example" data-i18n="wfScoutExample">/scout "files liên quan đến payment"</div>
                 </article>
 
                 <!-- /ask -->
@@ -1176,7 +1176,7 @@
                             <li>High-level implementation hints</li>
                         </ul>
                     </div>
-                    <div class="workflow-example">/ask "nên dùng REST hay GraphQL?"</div>
+                    <div class="workflow-example" data-i18n="wfAskExample">/ask "nên dùng REST hay GraphQL?"</div>
                 </article>
 
                 <!-- /git-commit -->
@@ -1196,7 +1196,7 @@
                             <li>Push (với xác nhận)</li>
                         </ul>
                     </div>
-                    <div class="workflow-example">/git-commit "push luôn sau khi commit"</div>
+                    <div class="workflow-example" data-i18n="wfGitExample">/git-commit "push luôn sau khi commit"</div>
                 </article>
             </div>
         </section>
@@ -1229,7 +1229,7 @@
                             <li>Git push + Create PR + Update Redmine</li>
                         </ul>
                     </div>
-                    <div class="workflow-example">/redmine "12345"</div>
+                    <div class="workflow-example" data-i18n="wfRedmineExample">/redmine "12345"</div>
                 </article>
 
                 <!-- /finish-task -->
@@ -1249,7 +1249,7 @@
                             <li>Tạo PR + Update Redmine status</li>
                         </ul>
                     </div>
-                    <div class="workflow-example">/finish-task "12345"</div>
+                    <div class="workflow-example" data-i18n="wfFinishExample">/finish-task "12345"</div>
                 </article>
             </div>
         </section>
@@ -1713,7 +1713,20 @@
                 wfGitBadge: "Standard", wfGitTitle: "Git Commit", wfGitDesc: "Tạo commit message chuẩn Conventional Commits.", wfGitStepTitle: "Format",
                 wfDeployBadge: "Ops", wfDeployTitle: "Build & Deploy", wfDeployDesc: "Build app và deploy lên staging/production servers.", wfDeployStepTitle: "Pipeline",
                 wfRedmineBadge: "Integration", wfRedmineTitle: "Xử Lý Task Từ Redmine", wfRedmineDesc: "Lấy thông tin task từ Redmine và thực hiện full workflow.", wfRedmineStepTitle: "Flow",
-                wfFinishBadge: "Complete", wfFinishTitle: "Hoàn Thành Task", wfFinishDesc: "Tạo PR, update Redmine status và link PR vào ticket.", wfFinishStepTitle: "Actions"
+                wfFinishBadge: "Complete", wfFinishTitle: "Hoàn Thành Task", wfFinishDesc: "Tạo PR, update Redmine status và link PR vào ticket.", wfFinishStepTitle: "Actions",
+                // Workflow Examples
+                wfPlanExample: '/plan "tạo authentication với OAuth2"',
+                wfCookExample: '/cook "implement REST API user management"',
+                wfFixExample: '/fix "lỗi null pointer khi login"',
+                wfDebugExample: '/debug "memory leak sau 1 giờ chạy"',
+                wfTestExample: '/test "chỉ chạy unit tests"',
+                wfReviewExample: '/review "review thay đổi gần đây"',
+                wfDocsExample: '/docs "cập nhật API documentation"',
+                wfScoutExample: '/scout "files liên quan đến payment"',
+                wfAskExample: '/ask "nên dùng REST hay GraphQL?"',
+                wfGitExample: '/git-commit "push luôn sau khi commit"',
+                wfRedmineExample: '/redmine "12345"',
+                wfFinishExample: '/finish-task "12345"'
             },
             en: {
                 title: "Workflow Guide",
@@ -1739,7 +1752,20 @@
                 wfGitBadge: "Standard", wfGitTitle: "Git Commit", wfGitDesc: "Create commit messages following Conventional Commits standard.", wfGitStepTitle: "Format",
                 wfDeployBadge: "Ops", wfDeployTitle: "Build & Deploy", wfDeployDesc: "Build app and deploy to staging/production servers.", wfDeployStepTitle: "Pipeline",
                 wfRedmineBadge: "Integration", wfRedmineTitle: "Process Redmine Task", wfRedmineDesc: "Fetch task info from Redmine and execute full workflow.", wfRedmineStepTitle: "Flow",
-                wfFinishBadge: "Complete", wfFinishTitle: "Finish Task", wfFinishDesc: "Create PR, update Redmine status and link PR to ticket.", wfFinishStepTitle: "Actions"
+                wfFinishBadge: "Complete", wfFinishTitle: "Finish Task", wfFinishDesc: "Create PR, update Redmine status and link PR to ticket.", wfFinishStepTitle: "Actions",
+                // Workflow Examples
+                wfPlanExample: '/plan "create authentication with OAuth2"',
+                wfCookExample: '/cook "implement REST API user management"',
+                wfFixExample: '/fix "null pointer error on login"',
+                wfDebugExample: '/debug "memory leak after 1 hour running"',
+                wfTestExample: '/test "run unit tests only"',
+                wfReviewExample: '/review "review recent changes"',
+                wfDocsExample: '/docs "update API documentation"',
+                wfScoutExample: '/scout "files related to payment"',
+                wfAskExample: '/ask "should I use REST or GraphQL?"',
+                wfGitExample: '/git-commit "push after commit"',
+                wfRedmineExample: '/redmine "12345"',
+                wfFinishExample: '/finish-task "12345"'
             }
         };
         

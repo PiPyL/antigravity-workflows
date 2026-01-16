@@ -856,36 +856,57 @@
                 padding: 8px 14px;
                 font-size: 0.8rem;
             }
-        /* Language Switcher */
+        }
+
+        /* Language Switcher - FlyDino Theme */
         .lang-switcher {
             position: fixed;
-            top: 20px;
-            right: 20px;
+            top: 24px;
+            right: 24px;
             z-index: 200;
             display: flex;
-            gap: 4px;
+            gap: 2px;
             padding: 4px;
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 100px;
-            backdrop-filter: blur(10px);
+            background: rgba(10, 11, 16, 0.9);
+            border: 1px solid rgba(248, 135, 59, 0.3);
+            border-radius: 12px;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4), 
+                        0 0 0 1px rgba(255, 255, 255, 0.05) inset;
         }
+
         .lang-btn {
-            padding: 8px 14px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: var(--text-secondary);
+            padding: 10px 16px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            font-family: var(--font-heading);
+            color: var(--text-muted);
             background: transparent;
             border: none;
-            border-radius: 100px;
+            border-radius: 8px;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            letter-spacing: 0.5px;
         }
-        .lang-btn:hover { color: var(--text-primary); }
+
+        .lang-btn:hover {
+            color: var(--text-primary);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
         .lang-btn.active {
             background: var(--accent-gradient);
             color: white;
+            box-shadow: 0 2px 12px rgba(248, 135, 59, 0.4),
+                        0 0 20px rgba(248, 135, 59, 0.2);
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
         }
+
+        .lang-btn.active:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 16px rgba(248, 135, 59, 0.5),
+                        0 0 24px rgba(248, 135, 59, 0.3);
         }
     </style>
 </head>

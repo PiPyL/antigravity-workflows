@@ -977,12 +977,12 @@
                 <article class="workflow-card">
                     <div class="workflow-header">
                         <span class="workflow-command">/plan</span>
-                        <span class="workflow-badge readonly">Chỉ Plan</span>
+                        <span class="workflow-badge readonly" data-i18n="wfPlanBadge">Chỉ Plan</span>
                     </div>
-                    <h3 class="workflow-title">Lập Kế Hoạch Triển Khai</h3>
-                    <p class="workflow-desc">Tạo implementation plan chi tiết trước khi bắt đầu coding. Áp dụng nguyên tắc YAGNI, KISS, DRY.</p>
+                    <h3 class="workflow-title" data-i18n="wfPlanTitle">Lập Kế Hoạch Triển Khai</h3>
+                    <p class="workflow-desc" data-i18n="wfPlanDesc">Tạo implementation plan chi tiết trước khi bắt đầu coding. Áp dụng nguyên tắc YAGNI, KISS, DRY.</p>
                     <div class="workflow-steps">
-                        <h4>Quy trình</h4>
+                        <h4 data-i18n="wfPlanStepTitle">Quy trình</h4>
                         <ul class="step-list">
                             <li>Phân tích yêu cầu từ user</li>
                             <li>Nghiên cứu codebase hiện có</li>
@@ -997,12 +997,12 @@
                 <article class="workflow-card">
                     <div class="workflow-header">
                         <span class="workflow-command">/cook</span>
-                        <span class="workflow-badge auto">Full Auto</span>
+                        <span class="workflow-badge auto" data-i18n="wfCookBadge">Full Auto</span>
                     </div>
-                    <h3 class="workflow-title">Triển Khai Đầy Đủ</h3>
-                    <p class="workflow-desc">Full-stack workflow từ planning đến deployment. Thực hiện tất cả các bước từ A đến Z.</p>
+                    <h3 class="workflow-title" data-i18n="wfCookTitle">Triển Khai Đầy Đủ</h3>
+                    <p class="workflow-desc" data-i18n="wfCookDesc">Full-stack workflow từ planning đến deployment. Thực hiện tất cả các bước từ A đến Z.</p>
                     <div class="workflow-steps">
-                        <h4>8 Phases</h4>
+                        <h4 data-i18n="wfCookStepTitle">8 Phases</h4>
                         <ul class="step-list">
                             <li>Làm rõ yêu cầu</li>
                             <li>Nghiên cứu → Lập kế hoạch</li>
@@ -1017,12 +1017,12 @@
                 <article class="workflow-card">
                     <div class="workflow-header">
                         <span class="workflow-command">/fix</span>
-                        <span class="workflow-badge auto">Auto Detect</span>
+                        <span class="workflow-badge auto" data-i18n="wfFixBadge">Auto Detect</span>
                     </div>
-                    <h3 class="workflow-title">Sửa Lỗi Nhanh</h3>
-                    <p class="workflow-desc">Phân tích và sửa lỗi với mức độ phức tạp tự động detect. Simple fix hoặc complex fix với mini-plan.</p>
+                    <h3 class="workflow-title" data-i18n="wfFixTitle">Sửa Lỗi Nhanh</h3>
+                    <p class="workflow-desc" data-i18n="wfFixDesc">Phân tích và sửa lỗi với mức độ phức tạp tự động detect. Simple fix hoặc complex fix với mini-plan.</p>
                     <div class="workflow-steps">
-                        <h4>Auto-detect độ phức tạp</h4>
+                        <h4 data-i18n="wfFixStepTitle">Auto-detect Mức Độ</h4>
                         <ul class="step-list">
                             <li><strong>Simple:</strong> 1-2 files, fix trực tiếp</li>
                             <li><strong>Complex:</strong> Nhiều files, có mini-plan</li>
@@ -1050,12 +1050,12 @@
                 <article class="workflow-card">
                     <div class="workflow-header">
                         <span class="workflow-command">/debug</span>
-                        <span class="workflow-badge readonly">Chỉ Phân Tích</span>
+                        <span class="workflow-badge readonly" data-i18n="wfDebugBadge">Chỉ Phân Tích</span>
                     </div>
-                    <h3 class="workflow-title">Debug & Phân Tích</h3>
-                    <p class="workflow-desc">Tìm root cause của issues và đề xuất giải pháp. Sử dụng kỹ thuật 5 Whys để đào sâu vấn đề.</p>
+                    <h3 class="workflow-title" data-i18n="wfDebugTitle">Debug & Phân Tích</h3>
+                    <p class="workflow-desc" data-i18n="wfDebugDesc">Tìm root cause của issues và đề xuất giải pháp. Sử dụng kỹ thuật 5 Whys để đào sâu vấn đề.</p>
                     <div class="workflow-steps">
-                        <h4>Root Cause Analysis</h4>
+                        <h4 data-i18n="wfDebugStepTitle">Root Cause Analysis</h4>
                         <ul class="step-list">
                             <li>Thu thập logs, error messages</li>
                             <li>Trace request/response flow</li>
@@ -1070,12 +1070,12 @@
                 <article class="workflow-card">
                     <div class="workflow-header">
                         <span class="workflow-command">/test</span>
-                        <span class="workflow-badge readonly">Chỉ Báo Cáo</span>
+                        <span class="workflow-badge readonly" data-i18n="wfTestBadge">Chỉ Báo Cáo</span>
                     </div>
-                    <h3 class="workflow-title">Chạy & Phân Tích Tests</h3>
-                    <p class="workflow-desc">Chạy test suite và phân tích kết quả chi tiết. Báo cáo coverage và đề xuất improvements.</p>
+                    <h3 class="workflow-title" data-i18n="wfTestTitle">Chạy & Phân Tích Tests</h3>
+                    <p class="workflow-desc" data-i18n="wfTestDesc">Chạy test suite và phân tích kết quả chi tiết. Báo cáo coverage và đề xuất improvements.</p>
                     <div class="workflow-steps">
-                        <h4>Test Analysis</h4>
+                        <h4 data-i18n="wfTestStepTitle">Test Analysis</h4>
                         <ul class="step-list">
                             <li>Xác định test environment</li>
                             <li>Chạy <code>npm test</code></li>
@@ -1090,12 +1090,12 @@
                 <article class="workflow-card">
                     <div class="workflow-header">
                         <span class="workflow-command">/review</span>
-                        <span class="workflow-badge">Full Review</span>
+                        <span class="workflow-badge" data-i18n="wfReviewBadge">Full Review</span>
                     </div>
-                    <h3 class="workflow-title">Review Code</h3>
-                    <p class="workflow-desc">Đánh giá toàn diện code quality, security, và performance cho changes gần đây.</p>
+                    <h3 class="workflow-title" data-i18n="wfReviewTitle">Review Code</h3>
+                    <p class="workflow-desc" data-i18n="wfReviewDesc">Đánh giá toàn diện code quality, security, và performance cho changes gần đây.</p>
                     <div class="workflow-steps">
-                        <h4>Review Areas</h4>
+                        <h4 data-i18n="wfReviewStepTitle">Review Areas</h4>
                         <ul class="step-list">
                             <li>Code Quality & Readability</li>
                             <li>Type Safety & Error Handling</li>
@@ -1123,12 +1123,12 @@
                 <article class="workflow-card">
                     <div class="workflow-header">
                         <span class="workflow-command">/docs</span>
-                        <span class="workflow-badge">Update</span>
+                        <span class="workflow-badge" data-i18n="wfDocsBadge">Update</span>
                     </div>
-                    <h3 class="workflow-title">Cập Nhật Documentation</h3>
-                    <p class="workflow-desc">Đồng bộ documentation với code changes gần đây. Cập nhật README, API docs, comments.</p>
+                    <h3 class="workflow-title" data-i18n="wfDocsTitle">Cập Nhật Documentation</h3>
+                    <p class="workflow-desc" data-i18n="wfDocsDesc">Đồng bộ documentation với code changes gần đây. Cập nhật README, API docs, comments.</p>
                     <div class="workflow-steps">
-                        <h4>Docs Update</h4>
+                        <h4 data-i18n="wfDocsStepTitle">Docs Update</h4>
                         <ul class="step-list">
                             <li>Phân tích recent changes</li>
                             <li>Cập nhật README.md</li>
@@ -1143,12 +1143,12 @@
                 <article class="workflow-card">
                     <div class="workflow-header">
                         <span class="workflow-command">/scout</span>
-                        <span class="workflow-badge">Search</span>
+                        <span class="workflow-badge" data-i18n="wfScoutBadge">Search</span>
                     </div>
-                    <h3 class="workflow-title">Khám Phá Codebase</h3>
-                    <p class="workflow-desc">Tìm kiếm nhanh files và code liên quan trong codebase. Nhanh và focused.</p>
+                    <h3 class="workflow-title" data-i18n="wfScoutTitle">Khám Phá Codebase</h3>
+                    <p class="workflow-desc" data-i18n="wfScoutDesc">Tìm kiếm nhanh files và code liên quan trong codebase. Nhanh và focused.</p>
                     <div class="workflow-steps">
-                        <h4>Scout Features</h4>
+                        <h4 data-i18n="wfScoutStepTitle">Scout Features</h4>
                         <ul class="step-list">
                             <li>Tìm files theo pattern</li>
                             <li>Search code content</li>
@@ -1163,12 +1163,12 @@
                 <article class="workflow-card">
                     <div class="workflow-header">
                         <span class="workflow-command">/ask</span>
-                        <span class="workflow-badge readonly">Tư Vấn</span>
+                        <span class="workflow-badge readonly" data-i18n="wfAskBadge">Tư Vấn</span>
                     </div>
-                    <h3 class="workflow-title">Tư Vấn Kỹ Thuật</h3>
-                    <p class="workflow-desc">Trả lời câu hỏi về architecture, design decisions, best practices. Không implement.</p>
+                    <h3 class="workflow-title" data-i18n="wfAskTitle">Tư Vấn Kỹ Thuật</h3>
+                    <p class="workflow-desc" data-i18n="wfAskDesc">Trả lời câu hỏi về architecture, design decisions, best practices. Không implement.</p>
                     <div class="workflow-steps">
-                        <h4>Consultation</h4>
+                        <h4 data-i18n="wfAskStepTitle">Consultation</h4>
                         <ul class="step-list">
                             <li>Phân tích từ nhiều góc độ</li>
                             <li>Multiple options với pros/cons</li>
@@ -1183,12 +1183,12 @@
                 <article class="workflow-card">
                     <div class="workflow-header">
                         <span class="workflow-command">/git-commit</span>
-                        <span class="workflow-badge auto">Auto</span>
+                        <span class="workflow-badge auto" data-i18n="wfGitBadge">Auto</span>
                     </div>
-                    <h3 class="workflow-title">Git Commit & Push</h3>
-                    <p class="workflow-desc">Tạo clean commits theo conventional commit format và push code lên repository.</p>
+                    <h3 class="workflow-title" data-i18n="wfGitTitle">Git Commit & Push</h3>
+                    <p class="workflow-desc" data-i18n="wfGitDesc">Tạo clean commits theo conventional commit format và push code lên repository.</p>
                     <div class="workflow-steps">
-                        <h4>Commit Process</h4>
+                        <h4 data-i18n="wfGitStepTitle">Commit Process</h4>
                         <ul class="step-list">
                             <li>Kiểm tra git status</li>
                             <li>Chạy lint & tests</li>
@@ -1216,12 +1216,12 @@
                 <article class="workflow-card">
                     <div class="workflow-header">
                         <span class="workflow-command">/redmine</span>
-                        <span class="workflow-badge auto">Full Auto</span>
+                        <span class="workflow-badge auto" data-i18n="wfRedmineBadge">Full Auto</span>
                     </div>
-                    <h3 class="workflow-title">Xử Lý Task Từ Redmine</h3>
-                    <p class="workflow-desc">Full workflow từ fetch issue → planning → implement → test → push → create PR. Hoàn toàn tự động sau khi nhập Issue ID.</p>
+                    <h3 class="workflow-title" data-i18n="wfRedmineTitle">Xử Lý Task Từ Redmine</h3>
+                    <p class="workflow-desc" data-i18n="wfRedmineDesc">Full workflow từ fetch issue → planning → implement → test → push → create PR. Hoàn toàn tự động sau khi nhập Issue ID.</p>
                     <div class="workflow-steps">
-                        <h4>7 Phases</h4>
+                        <h4 data-i18n="wfRedmineStepTitle">7 Phases</h4>
                         <ul class="step-list">
                             <li>Auth → Fetch Issue từ Redmine API</li>
                             <li>Scout codebase + Lập kế hoạch</li>
@@ -1236,12 +1236,12 @@
                 <article class="workflow-card">
                     <div class="workflow-header">
                         <span class="workflow-command">/finish-task</span>
-                        <span class="workflow-badge auto">Auto</span>
+                        <span class="workflow-badge auto" data-i18n="wfFinishBadge">Auto</span>
                     </div>
-                    <h3 class="workflow-title">Hoàn Thành Task & Tạo PR</h3>
-                    <p class="workflow-desc">Workflow wrap-up sau khi code xong: commit, push, tạo PR, gắn link Redmine và cập nhật status.</p>
+                    <h3 class="workflow-title" data-i18n="wfFinishTitle">Hoàn Thành Task & Tạo PR</h3>
+                    <p class="workflow-desc" data-i18n="wfFinishDesc">Workflow wrap-up sau khi code xong: commit, push, tạo PR, gắn link Redmine và cập nhật status.</p>
                     <div class="workflow-steps">
-                        <h4>6 Phases</h4>
+                        <h4 data-i18n="wfFinishStepTitle">6 Phases</h4>
                         <ul class="step-list">
                             <li>Thu thập thông tin + Fetch issue</li>
                             <li>Pre-flight check (git status, lint)</li>
@@ -1699,7 +1699,21 @@
                 redmineTitle: "Redmine Integration", redmineDesc: "Tích hợp với Redmine để quản lý tasks",
                 detailedTitle: "📖 Chi Tiết Từng Workflow", detailedDesc: "Click vào từng mục để xem hướng dẫn chi tiết",
                 // Footer
-                footerTitle: "Happy Coding!", footerDesc: "Antigravity IDE Workflows - Phát triển nhanh hơn, thông minh hơn"
+                footerTitle: "Happy Coding!", footerDesc: "Antigravity IDE Workflows - Phát triển nhanh hơn, thông minh hơn",
+                // Workflows Content
+                wfPlanBadge: "Chỉ Plan", wfPlanTitle: "Lập Kế Hoạch Triển Khai", wfPlanDesc: "Tạo implementation plan chi tiết trước khi bắt đầu coding. Áp dụng nguyên tắc YAGNI, KISS, DRY.", wfPlanStepTitle: "Quy trình",
+                wfCookBadge: "Full Auto", wfCookTitle: "Triển Khai Đầy Đủ", wfCookDesc: "Full-stack workflow từ planning đến deployment. Thực hiện tất cả các bước từ A đến Z.", wfCookStepTitle: "8 Phases",
+                wfFixBadge: "Smart Fix", wfFixTitle: "Sửa Lỗi Nhanh", wfFixDesc: "Phân tích và sửa lỗi với mức độ phức tạp tự động detect. Simple fix hoặc complex fix với mini-plan.", wfFixStepTitle: "Auto-detect độ phức tạp",
+                wfDebugBadge: "Chỉ Phân Tích", wfDebugTitle: "Debug & Phân Tích", wfDebugDesc: "Tìm root cause của issues và đề xuất giải pháp. KHÔNG tự động implement.", wfDebugStepTitle: "Quy trình 5 bước",
+                wfReviewBadge: "Quality", wfReviewTitle: "Code Review", wfReviewDesc: "Review code toàn diện: logic, security, performance, và style.", wfReviewStepTitle: "Checklist",
+                wfTestBadge: "Verify", wfTestTitle: "Chạy Test & Verify", wfTestDesc: "Chạy unit tests, integration tests và phân tích kết quả.", wfTestStepTitle: "Features",
+                wfScoutBadge: "Explore", wfScoutTitle: "Khám Phá Codebase", wfScoutDesc: "Tìm kiếm thông tin, giải thích code và cấu trúc project.", wfScoutStepTitle: "Capabilities",
+                wfAskBadge: "Tư Vấn", wfAskTitle: "Tư Vấn Kỹ Thuật", wfAskDesc: "Trả lời câu hỏi về architecture, design decisions, best practices. Không implement.", wfAskStepTitle: "Consultation",
+                wfDocsBadge: "Maintenance", wfDocsTitle: "Cập Nhật Tài Liệu", wfDocsDesc: "Tự động cập nhật README, API docs và inline comments.", wfDocsStepTitle: "Scope",
+                wfGitBadge: "Standard", wfGitTitle: "Git Commit", wfGitDesc: "Tạo commit message chuẩn Conventional Commits.", wfGitStepTitle: "Format",
+                wfDeployBadge: "Ops", wfDeployTitle: "Build & Deploy", wfDeployDesc: "Build app và deploy lên staging/production servers.", wfDeployStepTitle: "Pipeline",
+                wfRedmineBadge: "Integration", wfRedmineTitle: "Xử Lý Task Từ Redmine", wfRedmineDesc: "Lấy thông tin task từ Redmine và thực hiện full workflow.", wfRedmineStepTitle: "Flow",
+                wfFinishBadge: "Complete", wfFinishTitle: "Hoàn Thành Task", wfFinishDesc: "Tạo PR, update Redmine status và link PR vào ticket.", wfFinishStepTitle: "Actions"
             },
             en: {
                 title: "Workflow Guide",
@@ -1711,7 +1725,21 @@
                 redmineTitle: "Redmine Integration", redmineDesc: "Integration with Redmine for task management",
                 detailedTitle: "📖 Workflow Details", detailedDesc: "Click on each item to see detailed instructions",
                 // Footer
-                footerTitle: "Happy Coding!", footerDesc: "Antigravity IDE Workflows - Develop faster, smarter"
+                footerTitle: "Happy Coding!", footerDesc: "Antigravity IDE Workflows - Develop faster, smarter",
+                // Workflows Content
+                wfPlanBadge: "Plan Only", wfPlanTitle: "Implementation Planning", wfPlanDesc: "Create detailed implementation plan before coding. Apply YAGNI, KISS, DRY principles.", wfPlanStepTitle: "Process",
+                wfCookBadge: "Full Auto", wfCookTitle: "Full Implementation", wfCookDesc: "Full-stack workflow from planning to deployment. Execute all steps from A to Z.", wfCookStepTitle: "8 Phases",
+                wfFixBadge: "Smart Fix", wfFixTitle: "Quick Fix", wfFixDesc: "Analyze and fix bugs with auto-detected complexity. Simple fix or complex fix with mini-plan.", wfFixStepTitle: "Auto-detect complexity",
+                wfDebugBadge: "Analysis Only", wfDebugTitle: "Debug & Analysis", wfDebugDesc: "Find root cause of issues and propose solutions. DO NOT auto-implement.", wfDebugStepTitle: "5-Step Process",
+                wfReviewBadge: "Quality", wfReviewTitle: "Code Review", wfReviewDesc: "Comprehensive code review: logic, security, performance, and style.", wfReviewStepTitle: "Checklist",
+                wfTestBadge: "Verify", wfTestTitle: "Run Test & Verify", wfTestDesc: "Run unit tests, integration tests and analyze results.", wfTestStepTitle: "Features",
+                wfScoutBadge: "Explore", wfScoutTitle: "Explore Codebase", wfScoutDesc: "Search information, explain code and project structure.", wfScoutStepTitle: "Capabilities",
+                wfAskBadge: "Consult", wfAskTitle: "Tech Consultation", wfAskDesc: "Answer questions about architecture, design decisions, best practices. No implementation.", wfAskStepTitle: "Consultation",
+                wfDocsBadge: "Maintenance", wfDocsTitle: "Update Documents", wfDocsDesc: "Auto-update README, API docs and inline comments.", wfDocsStepTitle: "Scope",
+                wfGitBadge: "Standard", wfGitTitle: "Git Commit", wfGitDesc: "Create commit messages following Conventional Commits standard.", wfGitStepTitle: "Format",
+                wfDeployBadge: "Ops", wfDeployTitle: "Build & Deploy", wfDeployDesc: "Build app and deploy to staging/production servers.", wfDeployStepTitle: "Pipeline",
+                wfRedmineBadge: "Integration", wfRedmineTitle: "Process Redmine Task", wfRedmineDesc: "Fetch task info from Redmine and execute full workflow.", wfRedmineStepTitle: "Flow",
+                wfFinishBadge: "Complete", wfFinishTitle: "Finish Task", wfFinishDesc: "Create PR, update Redmine status and link PR to ticket.", wfFinishStepTitle: "Actions"
             }
         };
         

@@ -946,8 +946,8 @@
             <div class="category-header">
                 <div class="category-icon">🎯</div>
                 <div>
-                    <h2 class="category-title">Core Development</h2>
-                    <p class="category-desc">Các workflow chính cho việc phát triển tính năng</p>
+                    <h2 class="category-title" data-i18n="coreTitle">Core Development</h2>
+                    <p class="category-desc" data-i18n="coreDesc">Các workflow chính cho việc phát triển tính năng</p>
                 </div>
             </div>
 
@@ -1019,8 +1019,8 @@
             <div class="category-header">
                 <div class="category-icon">🔍</div>
                 <div>
-                    <h2 class="category-title">Analysis & Quality</h2>
-                    <p class="category-desc">Phân tích, kiểm tra và đảm bảo chất lượng code</p>
+                    <h2 class="category-title" data-i18n="analysisTitle">Analysis & Quality</h2>
+                    <p class="category-desc" data-i18n="analysisDesc">Phân tích, kiểm tra và đảm bảo chất lượng code</p>
                 </div>
             </div>
 
@@ -1092,8 +1092,8 @@
             <div class="category-header">
                 <div class="category-icon">📝</div>
                 <div>
-                    <h2 class="category-title">Utilities</h2>
-                    <p class="category-desc">Các công cụ hỗ trợ trong quá trình phát triển</p>
+                    <h2 class="category-title" data-i18n="utilitiesTitle">Utilities</h2>
+                    <p class="category-desc" data-i18n="utilitiesDesc">Các công cụ hỗ trợ trong quá trình phát triển</p>
                 </div>
             </div>
 
@@ -1185,8 +1185,8 @@
             <div class="category-header">
                 <div class="category-icon">🔗</div>
                 <div>
-                    <h2 class="category-title">Redmine Integration</h2>
-                    <p class="category-desc">Tích hợp tự động với Redmine để xử lý tasks</p>
+                    <h2 class="category-title" data-i18n="redmineTitle">Redmine Integration</h2>
+                    <p class="category-desc" data-i18n="redmineDesc">Tích hợp tự động với Redmine để xử lý tasks</p>
                 </div>
             </div>
 
@@ -1236,8 +1236,8 @@
         <!-- Detailed Section -->
         <section id="detailed" class="detailed-section">
             <div class="detailed-header">
-                <h2>📖 Chi Tiết Từng Workflow</h2>
-                <p>Click vào từng mục để xem hướng dẫn chi tiết</p>
+                <h2 data-i18n="detailedTitle">📖 Chi Tiết Từng Workflow</h2>
+                <p data-i18n="detailedDesc">Click vào từng mục để xem hướng dẫn chi tiết</p>
             </div>
 
             <div class="accordion">
@@ -1671,14 +1671,26 @@
             vi: {
                 title: "Workflow Guide",
                 subtitle: "Bộ 12 workflows mạnh mẽ cho Antigravity IDE, tự động hóa quy trình phát triển phần mềm",
-                footerTitle: "Happy Coding!",
-                footerDesc: "Antigravity IDE Workflows - Phát triển nhanh hơn, thông minh hơn"
+                // Section headers
+                coreTitle: "Core Development", coreDesc: "Các workflow chính cho việc phát triển tính năng",
+                analysisTitle: "Analysis & Review", analysisDesc: "Phân tích code, review và đảm bảo chất lượng",
+                utilitiesTitle: "Utilities", utilitiesDesc: "Các công cụ hỗ trợ development workflow",
+                redmineTitle: "Redmine Integration", redmineDesc: "Tích hợp với Redmine để quản lý tasks",
+                detailedTitle: "📖 Chi Tiết Từng Workflow", detailedDesc: "Click vào từng mục để xem hướng dẫn chi tiết",
+                // Footer
+                footerTitle: "Happy Coding!", footerDesc: "Antigravity IDE Workflows - Phát triển nhanh hơn, thông minh hơn"
             },
             en: {
                 title: "Workflow Guide",
                 subtitle: "12 powerful workflows for Antigravity IDE, automating your software development process",
-                footerTitle: "Happy Coding!",
-                footerDesc: "Antigravity IDE Workflows - Develop faster, smarter"
+                // Section headers
+                coreTitle: "Core Development", coreDesc: "Main workflows for feature development",
+                analysisTitle: "Analysis & Review", analysisDesc: "Code analysis, review and quality assurance",
+                utilitiesTitle: "Utilities", utilitiesDesc: "Development workflow support tools",
+                redmineTitle: "Redmine Integration", redmineDesc: "Integration with Redmine for task management",
+                detailedTitle: "📖 Workflow Details", detailedDesc: "Click on each item to see detailed instructions",
+                // Footer
+                footerTitle: "Happy Coding!", footerDesc: "Antigravity IDE Workflows - Develop faster, smarter"
             }
         };
         
